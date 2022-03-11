@@ -5,7 +5,7 @@ QUESTIONS = [
 'question': "How many times can you take 2 apples from a pile of 10 apples?",
 'answer': "Once. Then you have a pile of 8 apples.",
 'accept': ['once', 'one', '1']
-}
+},
 {'question': 'What begins with "e" and ends with "e" but only has one letter in it?',
   'answer': "An envelope.",
   'accept': ['envelope']},
@@ -177,3 +177,37 @@ Can you figure out the answers to these trick questions?
 
 input('Press Enter to begin...')
 
+random.shuffle(QUESTIONS)
+score = 0
+
+for questionNumber,qa in enumerate(QUESTIONS):
+    print("\n" * 40)
+    print(f"Question: {questionNumber + 1}")
+    print(f"Score: {score} / {len(QUESTIONS)}")
+    print(f"QUESTION: {qa['question']}")
+    response = input(" ANSWER: ".lower())
+
+    if response == "quit":
+        print("Thanks for playing!")
+        sys.exit()
+
+    correct = False
+    for acceptanceWord in qa['accept']:
+        if acceptanceWord in response:
+            correct = True
+
+    if correct:
+        text = random.choice(CORRECT_TEXT)
+        print(text,qa['answer'])
+        score += 1
+    else:
+        text = random.choice(INCORRECT_TEXT)
+        print(text,'The answer is:', qa['answer'])
+
+    response = input('Press Enter for the next question...').lower()
+
+    if response == "quit":
+        print("Thanks for playing")
+        sys.exit()
+
+print("That's all the questions. Thanks for playing!")
