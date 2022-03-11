@@ -46,7 +46,7 @@ while True:
         print("Please enter: (R)ock (P)aper (S)cissors or (Q)uit")
         continue
 
-    if choose == exit_option:
+    if choose in exit_option:
         break
 
     play_game()
